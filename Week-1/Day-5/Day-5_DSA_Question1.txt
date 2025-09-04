@@ -1,0 +1,27 @@
+QUEUE servers
+
+FUNCTION addServer(server)
+    servers.enqueue(server)
+
+FUNCTION removeServer(server)
+    TEMP = new Queue
+    WHILE servers not empty
+        s = servers.dequeue()
+        IF s != server
+            TEMP.enqueue(s)
+    servers = TEMP
+
+FUNCTION processRequests(requests : List<String>)
+    FOR each request in requests
+        server = servers.dequeue()
+        PRINT request + " → " + server
+        servers.enqueue(server)
+servers = [S1, S2, S3]
+Requests: R1, R2, R3
+Output: R1→S1, R2→S2, R3→S3
+
+AddServer(S4)
+Requests continue: R4→S1, R5→S2
+
+RemoveServer(S2)
+Next request: R6→S3, R7→S4, R8→S1 ...

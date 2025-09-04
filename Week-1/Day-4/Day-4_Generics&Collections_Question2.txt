@@ -1,0 +1,12 @@
+MAP<Course, List<Student>> registrations
+
+FUNCTION registerStudent(course, student)
+    IF course not in registrations
+        registrations[course] = new empty list
+    ADD student to registrations[course]
+
+FUNCTION displayRegistrations()
+    FOR each course in registrations
+        PRINT "Course: " + course
+        FOR each student in registrations[course]
+            PRINT student

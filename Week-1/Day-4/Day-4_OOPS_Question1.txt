@@ -1,0 +1,17 @@
+Question1.
+CLASS Account
+    VARIABLE balance
+    METHOD deposit(amount)
+        balance = balance + amount
+    METHOD withdraw(amount) → ABSTRACT
+
+CLASS SavingAccount EXTENDS Account
+    METHOD withdraw(amount)
+        IF balance - amount >= 1000
+            balance = balance - amount
+        ELSE
+            PRINT "Minimum balance required!"
+
+CLASS CurrentAccount EXTENDS Account
+    METHOD withdraw(amount)
+        balance = balance - amount

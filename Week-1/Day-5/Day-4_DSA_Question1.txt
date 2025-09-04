@@ -1,0 +1,16 @@
+CLASS Flight
+    VARIABLE price
+    VARIABLE duration
+
+COMPARATOR FlightComparator
+    IF f1.price < f2.price RETURN -1
+    ELSE IF f1.price > f2.price RETURN 1
+    ELSE IF f1.duration < f2.duration RETURN -1
+    ELSE RETURN 1
+
+FUNCTION mergeSort(list, comparator)
+    IF list.size <= 1 RETURN list
+    mid = list.size / 2
+    left = mergeSort(left half, comparator)
+    right = mergeSort(right half, comparator)
+    RETURN merge(left, right, comparator)

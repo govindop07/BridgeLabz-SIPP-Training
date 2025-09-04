@@ -1,0 +1,15 @@
+CLASS TaskOrganizer
+    ATTRIBUTE: LinkedHashMap<taskId, taskDescription>
+    METHOD addTask(description)
+        taskId = auto-increment
+        INSERT into map
+    METHOD removeTask(taskId)
+        REMOVE from map
+    METHOD viewTasks()
+        PRINT tasks in insertion order
+
+MAIN
+    CREATE TaskOrganizer
+    ADD "Check emails", "Prepare sales report", "Call client"
+    REMOVE taskId 2
+    VIEW remaining tasks

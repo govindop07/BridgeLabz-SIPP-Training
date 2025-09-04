@@ -1,0 +1,42 @@
+CLASS TrieNode
+    VARIABLE children : Map<Character, TrieNode>
+    VARIABLE isEndOfWord : Boolean
+    VARIABLE popularity : Integer
+
+CLASS Trie
+    VARIABLE root = new TrieNode
+
+    METHOD insert(word, popularity)
+        node = root
+        FOR each character c in word
+            IF c not in node.children
+                node.children[c] = new TrieNode
+            node = node.children[c]
+        node.isEndOfWord = true
+        node.popularity = popularity
+
+    METHOD search(prefix) RETURNS List<String>
+        node = root
+        FOR each character c in prefix
+            IF c not in node.children
+                RETURN []
+            node = node.children[c]
+        RETURN collectSuggestions(node, prefix)
+
+    METHOD collectSuggestions(node, prefix) RETURNS List<String>
+        suggestions = []
+        DFS(node, prefix, suggestions)
+        SORT suggestions by popularity DESC
+        RETURN top N suggestions
+
+    METHOD DFS(node, currentWord, suggestions)
+        IF node.isEndOfWord
+            ADD (currentWord, node.popularity) to suggestions
+        FOR each child in node.children
+            DFS(child, currentWord + child.key, suggestions)
+Insert("pizza hut", 10)
+Insert("pizza point", 8)
+Insert("pita bread", 12)
+Insert("pizzeria", 5)
+
+Search("pi") → ["pita bread", "pizza hut", "pizza point"]

@@ -1,0 +1,26 @@
+INTERFACE Rentable
+    METHOD rent()
+    METHOD returnVehicle()
+
+ABSTRACT CLASS Vehicle IMPLEMENTS Rentable
+    VARIABLE model
+    VARIABLE rentPerDay
+
+CLASS Car EXTENDS Vehicle
+    IMPLEMENT rent()
+    IMPLEMENT returnVehicle()
+
+CLASS Bike EXTENDS Vehicle
+    IMPLEMENT rent()
+    IMPLEMENT returnVehicle()
+
+CLASS Bus EXTENDS Vehicle
+    IMPLEMENT rent()
+    IMPLEMENT returnVehicle()
+
+CLASS VehicleFactory
+    METHOD getVehicle(type)
+        IF type == "car" RETURN new Car
+        ELSE IF type == "bike" RETURN new Bike
+        ELSE IF type == "bus" RETURN new Bus
+        ELSE RETURN null

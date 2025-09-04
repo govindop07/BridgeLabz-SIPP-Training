@@ -1,0 +1,21 @@
+CLASS AttendanceSystem
+    ATTRIBUTE: attendance[students][days]
+
+    METHOD markAttendance(studentId, day, status)
+        attendance[studentId][day] = status
+
+    METHOD updateAttendance(studentId, day, newStatus)
+        attendance[studentId][day] = newStatus
+
+    METHOD generateReport(studentId)
+        count = 0
+        FOR each day in month
+            IF attendance[studentId][day] == 'P'
+                count++
+        PRINT "Total Present Days = ", count
+
+MAIN
+    CREATE AttendanceSystem for N students and 30 days
+    Mark attendance for Student 1 for first week
+    Update day 3 from A to P
+    Generate monthly report

@@ -1,0 +1,34 @@
+INTERFACE DiagnosisStrategy
+    METHOD diagnose(symptoms : List<String>) RETURNS List<String>
+
+CLASS RuleBasedDiagnosis IMPLEMENTS DiagnosisStrategy
+    METHOD diagnose(symptoms)
+        IF symptoms contain (fever AND cough AND fatigue)
+            RETURN ["Flu", "COVID-19"]
+        ELSE RETURN ["Unknown"]
+
+CLASS AIBasedDiagnosis IMPLEMENTS DiagnosisStrategy
+    METHOD diagnose(symptoms)
+        IF symptoms contain (headache AND dizziness AND nausea)
+            RETURN ["Migraine", "Vertigo"]
+        ELSE RETURN ["Unknown"]
+
+CLASS ProbabilityBasedDiagnosis IMPLEMENTS DiagnosisStrategy
+    METHOD diagnose(symptoms)
+        RETURN ["DiseaseA - 70%", "DiseaseB - 30%"]
+
+CLASS DiagnosisContext
+    VARIABLE strategy : DiagnosisStrategy
+
+    METHOD setStrategy(strategy)
+        this.strategy = strategy
+
+    METHOD executeDiagnosis(symptoms)
+        RETURN strategy.diagnose(symptoms)
+CREATE context
+context.setStrategy(new RuleBasedDiagnosis)
+PRINT context.executeDiagnosis(["fever", "cough", "fatigue"])
+
+context.setStrategy(new AIBasedDiagnosis)
+PRINT context.executeDiagnosis(["headache", "dizziness", "nausea"])
+

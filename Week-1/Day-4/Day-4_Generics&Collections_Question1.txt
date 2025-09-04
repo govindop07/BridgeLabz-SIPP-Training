@@ -1,0 +1,17 @@
+CLASS Transaction
+    VARIABLE merchant
+    VARIABLE date
+    VARIABLE amount
+
+FUNCTION generateReport(transactions)
+    GROUP transactions BY merchant
+        FOR each merchantGroup
+            GROUP transactions BY month
+                CALCULATE sum of amounts
+    RETURN nested report: Map<Merchant, Map<Month, TotalAmount>>
+
+FUNCTION displayReport(report)
+    FOR each merchant in report
+        PRINT "Merchant: " + merchant
+        FOR each month in merchant’s report
+            PRINT month + " -> " + totalAmount

@@ -1,0 +1,19 @@
+CLASS Graph
+    MAP zone -> list of neighbors
+    MAP zone -> risk value
+
+FUNCTION DFS(node, visited, totalRisk)
+    MARK node as visited
+    totalRisk = totalRisk + risk[node]
+    FOR each neighbor in adjacency list of node
+        IF neighbor not visited
+            DFS(neighbor, visited, totalRisk)
+
+FUNCTION findHighRiskZones(threshold)
+    visited = empty set
+    FOR each zone in graph
+        IF zone not visited
+            totalRisk = 0
+            DFS(zone, visited, totalRisk)
+            IF totalRisk > threshold
+                PRINT "High risk cluster found at zone: " + zone

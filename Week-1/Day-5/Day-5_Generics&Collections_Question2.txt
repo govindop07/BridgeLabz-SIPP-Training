@@ -1,0 +1,19 @@
+CLASS Employee
+    VARIABLE name
+    VARIABLE department
+    VARIABLE rating
+    VARIABLE baseSalary
+
+FUNCTION distributeBonuses(employees)
+    GROUP employees BY department → deptGroups
+
+    FOR each department in deptGroups
+        totalSalary = SUM(baseSalary of employees in department)
+        bonusPool = 0.10 * totalSalary
+
+        totalRating = SUM(rating of employees in department)
+
+        PRINT "Department: " + department
+        FOR each employee in department
+            share = (employee.rating / totalRating) * bonusPool
+            PRINT employee.name + " → " + share

@@ -1,0 +1,12 @@
+CLASS WordCounter
+    METHOD processText(text)
+        CLEAN text (remove punctuation, toLowerCase)
+        SPLIT into words
+        FOR each word
+            UPDATE word count in Map
+        SORT map by frequency
+        DISPLAY word counts
+
+MAIN
+    INPUT paragraph
+    CALL processText(paragraph)

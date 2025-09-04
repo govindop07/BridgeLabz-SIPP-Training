@@ -1,0 +1,18 @@
+DATA STRUCTURE:
+Map<Zone, Map<Day, List<Reading>>>
+
+FUNCTION addReading(zone, day, value)
+    IF zone not in map
+        map[zone] = new Map
+    IF day not in map[zone]
+        map[zone][day] = new List
+    ADD value to map[zone][day]
+
+FUNCTION generatePeakReport()
+    FOR each zone in map
+        FOR each day in map[zone]
+            readings = map[zone][day]
+            peak = MAX(readings)
+            PRINT zone + " " + day + " → Peak: " + peak
+Zone-A, 2025-08-01 → [120, 90, 200, 150] → Peak = 200
+Zone-B, 2025-08-01 → [300, 350, 250] → Peak = 350
